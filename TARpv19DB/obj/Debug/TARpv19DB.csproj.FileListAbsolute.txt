@@ -1,0 +1,12 @@
+C:\Users\morgo\Source\Repos\TARpv19DB\TARpv19DB\bin\Debug\TARpv19DB.exe.config
+C:\Users\morgo\Source\Repos\TARpv19DB\TARpv19DB\bin\Debug\TARpv19DB.exe
+C:\Users\morgo\Source\Repos\TARpv19DB\TARpv19DB\bin\Debug\TARpv19DB.pdb
+C:\Users\morgo\Source\Repos\TARpv19DB\TARpv19DB\obj\Debug\TARpv19DB.csprojAssemblyReference.cache
+C:\Users\morgo\Source\Repos\TARpv19DB\TARpv19DB\obj\Debug\TARpv19DB.Form1.resources
+C:\Users\morgo\Source\Repos\TARpv19DB\TARpv19DB\obj\Debug\TARpv19DB.Properties.Resources.resources
+C:\Users\morgo\Source\Repos\TARpv19DB\TARpv19DB\obj\Debug\TARpv19DB.csproj.GenerateResource.cache
+C:\Users\morgo\Source\Repos\TARpv19DB\TARpv19DB\obj\Debug\TARpv19DB.csproj.CoreCompileInputs.cache
+C:\Users\morgo\Source\Repos\TARpv19DB\TARpv19DB\obj\Debug\TARpv19DB.exe
+C:\Users\morgo\Source\Repos\TARpv19DB\TARpv19DB\obj\Debug\TARpv19DB.pdb
+C:\Users\morgo\Source\Repos\TARpv19DB\TARpv19DB\bin\Debug\AppData\opilased.mdf
+C:\Users\morgo\Source\Repos\TARpv19DB\TARpv19DB\bin\Debug\AppData\opilased_log.ldf
