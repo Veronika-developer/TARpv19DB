@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,7 @@ namespace TARpv19DB
     {
         SqlConnection connect = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =|DataDirectory|\AppData\opilased.mdf; Integrated Security = True");
         SqlCommand command;
+        SqlDataAdapter adapter;
         public Form1()
         {
             InitializeComponent();
@@ -24,10 +26,33 @@ namespace TARpv19DB
         {
             if(loginTXT.Text != "" && passTXT.Text != "")
             {
+                string login_ = loginTXT.Text;
+                string password_ = passTXT.Text;
+
                 connect.Open();
-                command = new SqlCommand("SELECT * FROM avtorizatsia WHERE login=@log,password=@pass", connect);
-                command.Parameters.AddWithValue("@log",loginTXT);
-                command.Parameters.AddWithValue("@pass", passTXT);
+
+                DataTable table = new DataTable();
+
+                adapter = new SqlDataAdapter();
+
+                command = new SqlCommand("SELECT * FROM avtorizatsia WHERE login = @log AND password = @pass", connect);
+                
+                command.Parameters.AddWithValue("@log", login_);
+                command.Parameters.AddWithValue("@pass", password_);
+
+                adapter.SelectCommand = command;
+                adapter.Fill(table);
+
+                if (table.Rows.Count > 0)
+                {
+                    MainForm mainForm = new MainForm();
+                    mainForm.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Вход не соверщен");
+                }
 
                 connect.Close();
             }
