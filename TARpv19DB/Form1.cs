@@ -51,7 +51,7 @@ namespace TARpv19DB
                 }
                 else
                 {
-                    MessageBox.Show("Вход не соверщен");
+                    MessageBox.Show("Вход не совершен");
                 }
 
                 connect.Close();

@@ -27,3 +27,4 @@ C:\Users\morgo\source\repos\TARpv19DB\TARpv19DB\bin\Debug\System.Runtime.Compile
 C:\Users\morgo\source\repos\TARpv19DB\TARpv19DB\bin\Debug\MySql.Data.xml
 C:\Users\morgo\source\repos\TARpv19DB\TARpv19DB\obj\Debug\TARpv19DB.exe.config
 C:\Users\morgo\source\repos\TARpv19DB\TARpv19DB\obj\Debug\TARpv19DB.csproj.CopyComplete
+C:\Users\morgo\source\repos\TARpv19DB\TARpv19DB\obj\Debug\TARpv19DB.emailForm.resources

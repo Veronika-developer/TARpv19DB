@@ -61,17 +61,19 @@
             // 
             // loginTXT
             // 
-            this.loginTXT.Location = new System.Drawing.Point(123, 168);
+            this.loginTXT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.loginTXT.Location = new System.Drawing.Point(123, 161);
             this.loginTXT.Name = "loginTXT";
-            this.loginTXT.Size = new System.Drawing.Size(247, 22);
+            this.loginTXT.Size = new System.Drawing.Size(247, 30);
             this.loginTXT.TabIndex = 1;
             // 
             // passTXT
             // 
-            this.passTXT.Location = new System.Drawing.Point(123, 241);
+            this.passTXT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.passTXT.Location = new System.Drawing.Point(123, 234);
             this.passTXT.Name = "passTXT";
-            this.passTXT.PasswordChar = '*';
-            this.passTXT.Size = new System.Drawing.Size(247, 22);
+            this.passTXT.PasswordChar = '♥';
+            this.passTXT.Size = new System.Drawing.Size(247, 30);
             this.passTXT.TabIndex = 2;
             // 
             // label2

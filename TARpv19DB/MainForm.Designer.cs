@@ -52,7 +52,7 @@ namespace TARpv19DB
             this.data_.Name = "data_";
             this.data_.RowHeadersWidth = 51;
             this.data_.RowTemplate.Height = 24;
-            this.data_.Size = new System.Drawing.Size(670, 572);
+            this.data_.Size = new System.Drawing.Size(670, 640);
             this.data_.TabIndex = 0;
             this.data_.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.data__RowHeaderMouseClick);
             // 
@@ -108,7 +108,7 @@ namespace TARpv19DB
             // 
             // Insert_
             // 
-            this.Insert_.Location = new System.Drawing.Point(26, 515);
+            this.Insert_.Location = new System.Drawing.Point(26, 503);
             this.Insert_.Name = "Insert_";
             this.Insert_.Size = new System.Drawing.Size(100, 30);
             this.Insert_.TabIndex = 8;
@@ -118,7 +118,7 @@ namespace TARpv19DB
             // 
             // change_
             // 
-            this.change_.Location = new System.Drawing.Point(149, 515);
+            this.change_.Location = new System.Drawing.Point(149, 503);
             this.change_.Name = "change_";
             this.change_.Size = new System.Drawing.Size(100, 30);
             this.change_.TabIndex = 9;
@@ -128,7 +128,7 @@ namespace TARpv19DB
             // 
             // delete_
             // 
-            this.delete_.Location = new System.Drawing.Point(25, 554);
+            this.delete_.Location = new System.Drawing.Point(87, 550);
             this.delete_.Name = "delete_";
             this.delete_.Size = new System.Drawing.Size(100, 30);
             this.delete_.TabIndex = 10;
@@ -150,7 +150,7 @@ namespace TARpv19DB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(965, 596);
+            this.ClientSize = new System.Drawing.Size(965, 664);
             this.Controls.Add(this.add_foto_);
             this.Controls.Add(this.delete_);
             this.Controls.Add(this.change_);
