@@ -117,12 +117,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AppData\opilased.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="AppData\opilased.mdf" />
     <Content Include="AppData\opilased_log.ldf">
       <DependentUpon>opilased.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\AasakülaFoto.jpg" />
     <Content Include="Images\BašarovFoto.jpg" />

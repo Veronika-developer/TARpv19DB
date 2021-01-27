@@ -9,7 +9,7 @@ namespace TARpv19DB
 {
     public partial class MainForm : Form
     {
-        SqlConnection connect = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =|DataDirectory|\AppData\opilased.mdf; Integrated Security = True");
+        SqlConnection connect = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =C:\Users\morgo\source\repos\TARpv19DB\TARpv19DB\AppData\opilased.mdf; Integrated Security = True");
         private SqlCommand command,command1;
         private SqlDataAdapter adapter, adapter2, adapter3;
         public string email_address = "";
@@ -21,8 +21,8 @@ namespace TARpv19DB
             info_parents.Hide();
             change_.Hide();
             delete_.Hide();
+            show_parents.Hide();
             DisplayData();
-            email = new emailForm();
             vali_ryhmBox.SelectedItem = "Все";
         }
 
@@ -56,7 +56,7 @@ namespace TARpv19DB
                 connect.Open();
 
                 DataTable table = new DataTable();
-                adapter = new SqlDataAdapter("SELECT * FROM students", connect);
+                adapter = new SqlDataAdapter("SELECT nimi, eesnimi FROM students", connect);
                 adapter.Fill(table);
                 data_.DataSource = table;
 
@@ -80,7 +80,7 @@ namespace TARpv19DB
             nimiTXT.Text = "";
             eesnimiTXT.Text = "";
             emailTXT.Text = "";
-            ageTXT.Text = "";
+            synniaeg_picker.Text = "";
             ryhmBox.SelectedIndex = 0;
             fotobox.Image = Image.FromFile("../../images/nikto.jpg");
 
@@ -114,7 +114,7 @@ namespace TARpv19DB
                     command.Parameters.AddWithValue("@f", file_pilt);
                     command.Parameters.AddWithValue("@r", (ryhmBox.SelectedIndex + 1));
                     command.Parameters.AddWithValue("@e", emailTXT.Text);
-                    var dateTime = DateTime.Parse(ageTXT.Text);
+                    var dateTime = DateTime.Parse(synniaeg_picker.Text);
                     command.Parameters.AddWithValue("@v", dateTime);
                     command.Parameters.AddWithValue("@vane", 1);
                     command.ExecuteNonQuery();
@@ -142,6 +142,7 @@ namespace TARpv19DB
                 emailTXT.Text = data_.Rows[e.RowIndex].Cells[4].Value.ToString();
                 change_.Show();
                 delete_.Show();
+                email_address = data_.Rows[e.RowIndex].Cells[2].Value.ToString();
             }
             else
             {
@@ -152,7 +153,7 @@ namespace TARpv19DB
                 string v = data_.Rows[e.RowIndex].Cells[4].Value.ToString();
                 ryhmBox.SelectedIndex = Int32.Parse(v)-1;
                 emailTXT.Text = data_.Rows[e.RowIndex].Cells[5].Value.ToString();
-                ageTXT.Text = data_.Rows[e.RowIndex].Cells[6].Value.ToString();
+                synniaeg_picker.Text = data_.Rows[e.RowIndex].Cells[6].Value.ToString();
                 string da_net = data_.Rows[e.RowIndex].Cells[7].Value.ToString();
 
                 DateTime Today = DateTime.Today;
@@ -175,7 +176,10 @@ namespace TARpv19DB
                 }
 
                 change_.Show();
+                show_parents.Show();
                 delete_.Show();
+
+                email_address = data_.Rows[e.RowIndex].Cells[5].Value.ToString();
             }
         }
 
@@ -231,13 +235,7 @@ namespace TARpv19DB
         {
             if(vali_ryhmBox.SelectedItem == "Все")
             {
-                connect.Open();
-
-                DataTable table = new DataTable();
-                adapter = new SqlDataAdapter("SELECT * FROM students", connect);
-                adapter.Fill(table);
-                data_.DataSource = table;
-                connect.Close();
+                DisplayData();
             }
             else
             {
@@ -259,12 +257,34 @@ namespace TARpv19DB
             }
         }
 
+        private void show_parents_CheckedChanged(object sender, EventArgs e)
+        {
+            if(show_parents.Checked == true)
+            {
+                connect.Open();
+
+                DataTable table = new DataTable();
+                adapter = new SqlDataAdapter();
+                command = new SqlCommand("SELECT name,surname FROM Parents WHERE student=@id", connect);
+                command.Parameters.AddWithValue("@id", Id);
+                adapter.SelectCommand = command;
+                adapter.Fill(table);
+                data_.DataSource = table;
+
+                connect.Close();
+            }
+            else
+            {
+                DisplayData();
+            }
+        }
+
         private void vanemad_check_CheckedChanged(object sender, EventArgs e)
         {
             if(vanemad_check.Checked == true)
             {
                 ageLBL.Hide();
-                ageTXT.Hide();
+                synniaeg_picker.Hide();
                 fotoLBL.Hide();
                 fotobox.Hide();
                 add_foto_.Hide();
@@ -277,7 +297,7 @@ namespace TARpv19DB
             else
             {
                 ageLBL.Show();
-                ageTXT.Show();
+                synniaeg_picker.Show();
                 fotoLBL.Show();
                 fotobox.Show();
                 add_foto_.Show();
@@ -291,6 +311,7 @@ namespace TARpv19DB
 
         private void emailBtn_Click(object sender, EventArgs e)
         {
+            email = new emailForm(email_address);
             email.ShowDialog();
         }
 
@@ -324,7 +345,7 @@ namespace TARpv19DB
                     command.Parameters.AddWithValue("@f", file_pilt);
                     command.Parameters.AddWithValue("@r", (ryhmBox.SelectedIndex + 1));
                     command.Parameters.AddWithValue("@e", emailTXT.Text);
-                    var dateTime = DateTime.Parse(ageTXT.Text);
+                    var dateTime = DateTime.Parse(synniaeg_picker.Text);
                     command.Parameters.AddWithValue("@v", dateTime);
                     if (info_parents.Checked == true)
                         command.Parameters.AddWithValue("@van", 1);

@@ -48,10 +48,11 @@ namespace TARpv19DB
             this.emailBtn = new System.Windows.Forms.Button();
             this.emailTXT = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.ageTXT = new System.Windows.Forms.TextBox();
             this.ageLBL = new System.Windows.Forms.Label();
             this.vanemad_check = new System.Windows.Forms.CheckBox();
             this.info_parents = new System.Windows.Forms.CheckBox();
+            this.show_parents = new System.Windows.Forms.CheckBox();
+            this.synniaeg_picker = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.data_)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fotobox)).BeginInit();
             this.SuspendLayout();
@@ -218,21 +219,14 @@ namespace TARpv19DB
             this.label2.TabIndex = 18;
             this.label2.Text = "Э-почта";
             // 
-            // ageTXT
-            // 
-            this.ageTXT.Location = new System.Drawing.Point(26, 242);
-            this.ageTXT.Name = "ageTXT";
-            this.ageTXT.Size = new System.Drawing.Size(223, 22);
-            this.ageTXT.TabIndex = 19;
-            // 
             // ageLBL
             // 
             this.ageLBL.AutoSize = true;
-            this.ageLBL.Location = new System.Drawing.Point(107, 222);
+            this.ageLBL.Location = new System.Drawing.Point(84, 222);
             this.ageLBL.Name = "ageLBL";
-            this.ageLBL.Size = new System.Drawing.Size(62, 17);
+            this.ageLBL.Size = new System.Drawing.Size(111, 17);
             this.ageLBL.TabIndex = 20;
-            this.ageLBL.Text = "Возраст";
+            this.ageLBL.Text = "Дата рождения";
             // 
             // vanemad_check
             // 
@@ -248,22 +242,42 @@ namespace TARpv19DB
             // info_parents
             // 
             this.info_parents.AutoSize = true;
-            this.info_parents.Location = new System.Drawing.Point(12, 552);
+            this.info_parents.Location = new System.Drawing.Point(12, 534);
             this.info_parents.Name = "info_parents";
             this.info_parents.Size = new System.Drawing.Size(260, 21);
             this.info_parents.TabIndex = 22;
             this.info_parents.Text = "Хранить информацию о родителях";
             this.info_parents.UseVisualStyleBackColor = true;
             // 
+            // show_parents
+            // 
+            this.show_parents.AutoSize = true;
+            this.show_parents.Location = new System.Drawing.Point(12, 561);
+            this.show_parents.Name = "show_parents";
+            this.show_parents.Size = new System.Drawing.Size(234, 21);
+            this.show_parents.TabIndex = 23;
+            this.show_parents.Text = "Показать родителя/родителей";
+            this.show_parents.UseVisualStyleBackColor = true;
+            this.show_parents.CheckedChanged += new System.EventHandler(this.show_parents_CheckedChanged);
+            // 
+            // synniaeg_picker
+            // 
+            this.synniaeg_picker.Location = new System.Drawing.Point(27, 242);
+            this.synniaeg_picker.Name = "synniaeg_picker";
+            this.synniaeg_picker.Size = new System.Drawing.Size(222, 22);
+            this.synniaeg_picker.TabIndex = 24;
+            this.synniaeg_picker.Value = new System.DateTime(2021, 1, 22, 13, 6, 27, 0);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1001, 717);
+            this.Controls.Add(this.synniaeg_picker);
+            this.Controls.Add(this.show_parents);
             this.Controls.Add(this.info_parents);
             this.Controls.Add(this.vanemad_check);
             this.Controls.Add(this.ageLBL);
-            this.Controls.Add(this.ageTXT);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.emailTXT);
             this.Controls.Add(this.emailBtn);
@@ -312,9 +326,10 @@ namespace TARpv19DB
         private System.Windows.Forms.Button emailBtn;
         private System.Windows.Forms.TextBox emailTXT;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox ageTXT;
         private System.Windows.Forms.Label ageLBL;
         private System.Windows.Forms.CheckBox vanemad_check;
         private System.Windows.Forms.CheckBox info_parents;
+        private System.Windows.Forms.CheckBox show_parents;
+        private System.Windows.Forms.DateTimePicker synniaeg_picker;
     }
 }

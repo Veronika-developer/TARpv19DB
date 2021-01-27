@@ -8,8 +8,6 @@ C:\Users\morgo\Source\Repos\TARpv19DB\TARpv19DB\obj\Debug\TARpv19DB.csproj.Gener
 C:\Users\morgo\Source\Repos\TARpv19DB\TARpv19DB\obj\Debug\TARpv19DB.csproj.CoreCompileInputs.cache
 C:\Users\morgo\Source\Repos\TARpv19DB\TARpv19DB\obj\Debug\TARpv19DB.exe
 C:\Users\morgo\Source\Repos\TARpv19DB\TARpv19DB\obj\Debug\TARpv19DB.pdb
-C:\Users\morgo\Source\Repos\TARpv19DB\TARpv19DB\bin\Debug\AppData\opilased.mdf
-C:\Users\morgo\Source\Repos\TARpv19DB\TARpv19DB\bin\Debug\AppData\opilased_log.ldf
 C:\Users\morgo\source\repos\TARpv19DB\TARpv19DB\obj\Debug\TARpv19DB.MainForm.resources
 C:\Users\morgo\source\repos\TARpv19DB\TARpv19DB\bin\Debug\MySql.Data.dll
 C:\Users\morgo\source\repos\TARpv19DB\TARpv19DB\bin\Debug\Google.Protobuf.dll

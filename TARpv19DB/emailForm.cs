@@ -17,7 +17,7 @@ namespace TARpv19DB
 {
     public partial class emailForm : Form
     {
-        SqlConnection connect = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =|DataDirectory|\AppData\opilased.mdf; Integrated Security = True");
+        SqlConnection connect = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =C:\Users\morgo\source\repos\TARpv19DB\TARpv19DB\AppData\opilased.mdf; Integrated Security = True");
         SqlCommand command;
         SqlDataAdapter adapter;
         DataTable table;
@@ -25,42 +25,70 @@ namespace TARpv19DB
         public string email_address;
         List<string> avaldused, opilased;
         string name;
-        public emailForm()
+        public emailForm(string email_address)
         {
             InitializeComponent();
             avaldused = new List<string>();
             show_email();
+            this.email_address = email_address;
+            if(email_address != "")
+            {
+                to_.Text = email_address;
+            }
         }
 
         private void Send_Email_Click(object sender, EventArgs e)
         {
+            if(from_.Text != "" && to_.Text != "" && topic_.Text != "" && main_text.Text != "")
+            {
+                if(IsValidEmail(from_.Text) == true && IsValidEmail(to_.Text) == true)
+                {
+                    try
+                    {
+                        MailMessage mail = new MailMessage(); //использовать можно не только этот плагин для отправления письма
+
+                        //string password = Interaction.InputBox("Sisesta salasõna", "Salasõna", "12345");
+
+                        SmtpClient smtpClient = new SmtpClient("smtp.gmail.com")
+                        {
+                            Port = 587,
+                            Credentials = new System.Net.NetworkCredential("veronika.jefimova03@gmail.com", "v140220033"), // почта и пароль отправителя
+                            EnableSsl = true
+                        };
+
+                        mail.From = new MailAddress(from_.Text);
+                        mail.To.Add(to_.Text);//адресат
+                        mail.Subject = topic_.Text;//тема письма
+                        mail.Body = main_text.Text; //тело письма
+                        foreach (var item in avaldused) //заявления
+                        {
+                            mail.Attachments.Add(new Attachment(item));
+                        }
+                        smtpClient.Send(mail);
+                        MessageBox.Show("Письмо отправлено");
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Ошибка");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Все поля должны быть заполнены!");
+            }
+        }
+
+        bool IsValidEmail(string email)
+        {
             try
             {
-                MailMessage mail = new MailMessage(); //использовать можно не только этот плагин для отправления письма
-
-                //string password = Interaction.InputBox("Sisesta salasõna", "Salasõna", "12345");
-
-                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com")
-                {
-                    Port = 587,
-                    //Credentials = new System.Net.NetworkCredential(from_.Text, password), // почта и пароль отправителя
-                    EnableSsl = true
-                };
-
-                mail.From = new MailAddress(from_.Text);
-                mail.To.Add(to_.Text);//адресат
-                mail.Subject = topic_.Text;//тема письма
-                mail.Body = main_text.Text; //тело письма
-                foreach (var item in avaldused) //заявления
-                {
-                    mail.Attachments.Add(new Attachment(item));
-                }
-                smtpClient.Send(mail);
-                MessageBox.Show("Письмо отправлено");
+                var addr = new MailAddress(email);
+                return addr.Address == email;
             }
             catch
             {
-                MessageBox.Show("Ошибка");
+                return false;
             }
         }
 
