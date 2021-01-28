@@ -9,7 +9,7 @@ namespace TARpv19DB
 {
     public partial class MainForm : Form
     {
-        SqlConnection connect = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =C:\Users\morgo\source\repos\TARpv19DB\TARpv19DB\AppData\opilased.mdf; Integrated Security = True");
+        SqlConnection connect = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =C:\Users\opilane\source\repos\Jefimova\TARpv19DB\TARpv19DB\AppData\opilased.mdf; Integrated Security = True");
         private SqlCommand command,command1;
         private SqlDataAdapter adapter, adapter2, adapter3;
         public string email_address = "";
@@ -56,7 +56,7 @@ namespace TARpv19DB
                 connect.Open();
 
                 DataTable table = new DataTable();
-                adapter = new SqlDataAdapter("SELECT nimi, eesnimi FROM students", connect);
+                adapter = new SqlDataAdapter("SELECT * FROM students", connect);
                 adapter.Fill(table);
                 data_.DataSource = table;
 
@@ -106,11 +106,11 @@ namespace TARpv19DB
                 }
                 else
                 {
-                    command = new SqlCommand("insert into students(nimi,eesnimi,foto,ryhm,email,vanus,vanemad) values(@n,@ees,@f,@r,@e,@v,@vane)", connect);
+                    command = new SqlCommand("insert into students(nimi,eesnimi,foto,ryhm,email,synniaeg,vanemad) values(@n,@ees,@f,@r,@e,@v,@vane)", connect);
                     connect.Open();
                     command.Parameters.AddWithValue("@n", nimiTXT.Text);
                     command.Parameters.AddWithValue("@ees", eesnimiTXT.Text);
-                    string file_pilt = nimiTXT.Text + ".jpg";
+                    string file_pilt = eesnimiTXT.Text + "Foto.jpg";
                     command.Parameters.AddWithValue("@f", file_pilt);
                     command.Parameters.AddWithValue("@r", (ryhmBox.SelectedIndex + 1));
                     command.Parameters.AddWithValue("@e", emailTXT.Text);
@@ -149,7 +149,7 @@ namespace TARpv19DB
                 Id = Convert.ToInt32(data_.Rows[e.RowIndex].Cells[0].Value.ToString());
                 nimiTXT.Text = data_.Rows[e.RowIndex].Cells[1].Value.ToString();
                 eesnimiTXT.Text = data_.Rows[e.RowIndex].Cells[2].Value.ToString();
-                fotobox.Image = Image.FromFile(@"C:\Users\morgo\source\repos\TARpv19DB\TARpv19DB\Images\" + data_.Rows[e.RowIndex].Cells[3].Value.ToString());
+                fotobox.Image = Image.FromFile(@"C:\Users\opilane\source\repos\Jefimova\TARpv19DB\TARpv19DB\Images/" + data_.Rows[e.RowIndex].Cells[3].Value.ToString());
                 string v = data_.Rows[e.RowIndex].Cells[4].Value.ToString();
                 ryhmBox.SelectedIndex = Int32.Parse(v)-1;
                 emailTXT.Text = data_.Rows[e.RowIndex].Cells[5].Value.ToString();
@@ -290,6 +290,7 @@ namespace TARpv19DB
                 add_foto_.Hide();
                 vali_ryhmBox.Hide();
                 label1.Hide();
+                show_parents.Hide();
                 info_parents.Hide();
                 ryhmLBL.Text = "Ученик:";
                 DisplayData();
@@ -336,17 +337,17 @@ namespace TARpv19DB
                 }
                 else
                 {
-                    command = new SqlCommand("UPDATE students SET nimi=@n,eesnimi=@ees,foto=@f,ryhm=@r, email=@e,vanus=@v, vanemad=@van WHERE Id=@id", connect);
+                    command = new SqlCommand("UPDATE students SET nimi=@n,eesnimi=@ees,foto=@f,ryhm=@r, email=@e,synniaeg=@vanus, vanemad=@van WHERE Id=@id", connect);
                     connect.Open();
                     command.Parameters.AddWithValue("@id", Id);
                     command.Parameters.AddWithValue("@n", nimiTXT.Text);
                     command.Parameters.AddWithValue("@ees", eesnimiTXT.Text);
-                    string file_pilt = fotobox.Image.ToString();
+                    string file_pilt = eesnimiTXT.Text + "Foto.jpg";
                     command.Parameters.AddWithValue("@f", file_pilt);
                     command.Parameters.AddWithValue("@r", (ryhmBox.SelectedIndex + 1));
                     command.Parameters.AddWithValue("@e", emailTXT.Text);
                     var dateTime = DateTime.Parse(synniaeg_picker.Text);
-                    command.Parameters.AddWithValue("@v", dateTime);
+                    command.Parameters.AddWithValue("@vanus", dateTime);
                     if (info_parents.Checked == true)
                         command.Parameters.AddWithValue("@van", 1);
                     else

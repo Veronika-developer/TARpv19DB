@@ -17,7 +17,7 @@ namespace TARpv19DB
 {
     public partial class emailForm : Form
     {
-        SqlConnection connect = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =C:\Users\morgo\source\repos\TARpv19DB\TARpv19DB\AppData\opilased.mdf; Integrated Security = True");
+        SqlConnection connect = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =C:\Users\opilane\source\repos\Jefimova\TARpv19DB\TARpv19DB\AppData\opilased.mdf; Integrated Security = True");
         SqlCommand command;
         SqlDataAdapter adapter;
         DataTable table;
@@ -47,12 +47,12 @@ namespace TARpv19DB
                     {
                         MailMessage mail = new MailMessage(); //использовать можно не только этот плагин для отправления письма
 
-                        //string password = Interaction.InputBox("Sisesta salasõna", "Salasõna", "12345");
+                        string password = Interaction.InputBox("Введите пароль", "Пароль", "12345");
 
                         SmtpClient smtpClient = new SmtpClient("smtp.gmail.com")
                         {
                             Port = 587,
-                            Credentials = new System.Net.NetworkCredential("veronika.jefimova03@gmail.com", "v140220033"), // почта и пароль отправителя
+                            Credentials = new System.Net.NetworkCredential(from_.Text, password), // почта и пароль отправителя
                             EnableSsl = true
                         };
 
@@ -71,6 +71,10 @@ namespace TARpv19DB
                     {
                         MessageBox.Show("Ошибка");
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Неверно введен адресс почты");
                 }
             }
             else
